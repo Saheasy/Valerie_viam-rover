@@ -1,4 +1,5 @@
 from inputs import get_gamepad
+import RPi.GPIO
 
 keys = {
     "ABS_X": 127, #Left X Joystick
@@ -22,6 +23,16 @@ keys = {
 
 }
 
+pins = {
+    "right_motor_in1": 16, "right_motor_in2": 18, "right_motor_speed": 22,
+    "left_motor_in1": 16, "left_motor_in2": 18, "left_motor_speed": 22,
+}
+GPIO.setup(11, GPIO.IN, initial=GPIO.HIGH) #Right Motor In1 Setup
+GPIO.setup(13, GPIO.IN, initial=GPIO.HIGH) #Right Motor In2 Setup
+GPIO.setup(15, GPIO.IN) #Right Motor PWM Setup
+right_motor_speed = GPIO.PWM(22, 127)
+
+
 while 1:
     '''
     #Non-Comprehension format
@@ -31,5 +42,6 @@ while 1:
         keys[event.code] = event.state
     '''
     [ keys.update({event.code: event.state}) for event in get_gamepad() ]
-    
-    
+    right_motor_speed = keys["ABS_RZ"]
+
+
