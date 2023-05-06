@@ -44,5 +44,6 @@ while 1:
     '''
     [ keys.update({event.code: event.state}) for event in get_gamepad() ]
     right_motor_speed = keys["ABS_RZ"]
+    print(keys["ABS_RZ"])
 
 
