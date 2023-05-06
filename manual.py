@@ -1,5 +1,5 @@
 from inputs import get_gamepad
-import RPi.GPIO
+import RPi.GPIO as GPIO
 
 keys = {
     "ABS_X": 127, #Left X Joystick
