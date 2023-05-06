@@ -31,4 +31,5 @@ while 1:
         keys[event.code] = event.state
     '''
     [ keys.update({event.code: event.state}) for event in get_gamepad() ]
-    print(keys["ABS_HAT0Y"])
+    
+    
