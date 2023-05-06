@@ -5,6 +5,8 @@ from typing import Any, Dict, Optional
 from viam.components.arm import Arm, JointPositions, Pose, WorldState
 from viam.operations import run_with_operation
 
+class ValerieFunctions:
+    pass
 
 class MyCoolArm(Arm):
     # Subclass the Viam Arm component and implement the required functions
