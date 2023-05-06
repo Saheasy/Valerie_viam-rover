@@ -27,9 +27,9 @@ pins = {
     "right_motor_in1": 16, "right_motor_in2": 18, "right_motor_speed": 22,
     "left_motor_in1": 16, "left_motor_in2": 18, "left_motor_speed": 22,
 }
-GPIO.setup(11, GPIO.IN, initial=GPIO.HIGH) #Right Motor In1 Setup
-GPIO.setup(13, GPIO.IN, initial=GPIO.HIGH) #Right Motor In2 Setup
-GPIO.setup(15, GPIO.IN) #Right Motor PWM Setup
+GPIO.setup(pins["right_motor_in1"], GPIO.OUT, initial=GPIO.HIGH) #Right Motor In1 Setup
+GPIO.setup(pins["right_motor_in2"], GPIO.OUT, initial=GPIO.HIGH) #Right Motor In2 Setup
+GPIO.setup(pins["right_motor_speed"], GPIO.OUT) #Right Motor PWM Setup
 right_motor_speed = GPIO.PWM(22, 127)
 
 
