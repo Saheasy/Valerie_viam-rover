@@ -47,8 +47,9 @@ try:
             keys[event.code] = event.state
         '''
         [ keys.update({event.code: event.state}) for event in get_gamepad() ]
-        right_motor_pwm.ChangeDutyCycle(((keys["ABS_RZ"] - 127) / 127)+0.5)
-        print((((keys["ABS_RZ"] - 127) / 127)+0.5))
+        equation = ( ( (keys["ABS_RZ"] - 127) / 127) * 50 ) + 50
+        right_motor_pwm.ChangeDutyCycle( equation ) 
+        print( equation )
 
 except KeyboardInterrupt:
     right_motor_pwm.stop()
