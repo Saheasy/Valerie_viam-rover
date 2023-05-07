@@ -47,7 +47,7 @@ try:
             keys[event.code] = event.state
         '''
         [ keys.update({event.code: event.state}) for event in get_gamepad() ]
-        equation = int( (keys["ABS_RZ"] / 127) * 100 )
+        equation = int( (keys["ABS_RZ"] / 127) * 50 )
         right_motor_pwm.ChangeDutyCycle( equation ) 
         print( equation )
 
