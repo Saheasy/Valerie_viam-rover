@@ -47,8 +47,8 @@ motor = board.set_pin_mode_stepper(interface=8, pin1=8, pin2=9, pin3=10, pin4=11
 
 
 # set the max speed and speed
-board.stepper_set_max_speed(motor, 900)
-board.stepper_set_speed(motor, 500)
+board.stepper_set_max_speed(motor, 1000)
+board.stepper_set_speed(motor, 1000)
 
 # run the motor
 board.stepper_run_speed(motor)
