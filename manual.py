@@ -35,7 +35,7 @@ try:
     GPIO.setup(pins["right_motor_in1"], GPIO.OUT, initial=GPIO.HIGH) #Right Motor In1 Setup
     GPIO.setup(pins["right_motor_in2"], GPIO.OUT, initial=GPIO.HIGH) #Right Motor In2 Setup
     GPIO.setup(pins["right_motor_speed"], GPIO.OUT) #Right Motor PWM Setup
-    right_motor_pwm = GPIO.PWM(22, 0.75)
+    right_motor_pwm = GPIO.PWM(22, 0.5)
     right_motor_pwm.start(50)
 
     while 1:
