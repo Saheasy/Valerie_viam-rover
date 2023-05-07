@@ -27,25 +27,30 @@ pins = {
     "right_motor_in1": 16, "right_motor_in2": 18, "right_motor_speed": 22,
     "left_motor_in1": 16, "left_motor_in2": 18, "left_motor_speed": 22,
 }
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 
-GPIO.setup(pins["right_motor_in1"], GPIO.OUT, initial=GPIO.HIGH) #Right Motor In1 Setup
-GPIO.setup(pins["right_motor_in2"], GPIO.OUT, initial=GPIO.HIGH) #Right Motor In2 Setup
-GPIO.setup(pins["right_motor_speed"], GPIO.OUT) #Right Motor PWM Setup
-right_motor_pwm = GPIO.PWM(22, 0.75)
-right_motor_pwm.start(50)
+try: 
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
 
-while 1:
-    '''
-    #Non-Comprehension format
-    events = get_gamepad()
-    for event in events:
-        print(event.ev_type, event.code, event.state)
-        keys[event.code] = event.state
-    '''
-    [ keys.update({event.code: event.state}) for event in get_gamepad() ]
-    right_motor_pwm.ChangeDutyCycle(abs(keys["ABS_RZ"] - 127) / 127)
-    print(keys["ABS_RZ"])
+    GPIO.setup(pins["right_motor_in1"], GPIO.OUT, initial=GPIO.HIGH) #Right Motor In1 Setup
+    GPIO.setup(pins["right_motor_in2"], GPIO.OUT, initial=GPIO.HIGH) #Right Motor In2 Setup
+    GPIO.setup(pins["right_motor_speed"], GPIO.OUT) #Right Motor PWM Setup
+    right_motor_pwm = GPIO.PWM(22, 0.75)
+    right_motor_pwm.start(50)
 
+    while 1:
+        '''
+        #Non-Comprehension format
+        events = get_gamepad()
+        for event in events:
+            print(event.ev_type, event.code, event.state)
+            keys[event.code] = event.state
+        '''
+        [ keys.update({event.code: event.state}) for event in get_gamepad() ]
+        right_motor_pwm.ChangeDutyCycle(abs(keys["ABS_RZ"] - 127) / 127)
+        print(keys["ABS_RZ"])
+
+except KeyboardInterrupt:
+    right_motor_pwm.stop()
+    GPIO.cleanup()
 
