@@ -23,7 +23,7 @@ class MotorL298N:
         self.board.set_pin_mode_digital_output(self.en_pinB)
 
     def power(self, motor_power):
-        self.board.analog_write(abs(motor_power))
+        self.board.analog_write(self.pwm_pin, abs(motor_power))
         if motor_power > 0:
             self.board.digital_write(self.en_pinA,0)
             self.board.digital_write(self.en_pinB,1)
@@ -39,7 +39,7 @@ class Motor12x5ALite():
         self.board.set_pin_mode_digital_output(self.en_pin)
     
     def power(self, motor_power):
-        self.board.analog_write(abs(motor_power))
+        self.board.analog_write(self.pwm_pin, abs(motor_power))
         if motor_power > 0:
             self.board.digital_write(self.en_pin,0)
         else:
