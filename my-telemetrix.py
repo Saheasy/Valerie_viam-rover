@@ -11,8 +11,8 @@ class ControlSystem:
         #self.gripper, self.arm = MotorL298N(47,48,49, self.board), MotorL298N(44,45,46, self.board)
     
     def drivetrain(self):
-        equation = int( (self.gamepad.keys["ABS_Y"] - 128) * 2 )
-        #self.drive_left.power(equation)
+        equation = int( (self.gamepad.keys["ABS_Y"] - 127) * 2 )
+        self.drive_left.power(equation)
         print(equation)
         
         #self.drive_right.power(int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ))
