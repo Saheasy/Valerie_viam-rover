@@ -7,12 +7,12 @@ class ControlSystem:
     def __init__(self):
         self.gamepad = Gamepad()
         self.board = telemetrix.Telemetrix()
-        self.drive_left, self.drive_right = Motor12x5ALite(3,2, self.board), Motor12x5ALite(5,4, self.board)
-        self.gripper, self.arm = MotorL298N(47,48,49, self.board), MotorL298N(44,45,46, self.board)
+        self.drive_left, self.drive_right = Motor12x5ALite(3,2, self.board), Motor12x5ALite(4,5, self.board)
+        #self.gripper, self.arm = MotorL298N(47,48,49, self.board), MotorL298N(44,45,46, self.board)
     
     def drivetrain(self):
         equation = int( (self.gamepad.keys["ABS_Y"] - 128) * 2 )
-        self.drive_left.power(equation)
+        #self.drive_left.power(equation)
         print(equation)
         
         #self.drive_right.power(int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ))
