@@ -1,7 +1,9 @@
 import sys
 import time
+import subprocess
 from telemetrix import telemetrix
 from mygamepad import Gamepad
+subprocess.run('git', 'pull')
 
 class ControlSystem:
     def __init__(self):
