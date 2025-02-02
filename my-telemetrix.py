@@ -58,7 +58,6 @@ while True:
     try:
         robot.drivetrain()
         robot.gamepad.update()
-        time.sleep(100)
     except KeyboardInterrupt:
         robot.board.shutdown()
         sys.exit(0)
