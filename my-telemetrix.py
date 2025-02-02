@@ -11,8 +11,11 @@ class ControlSystem:
         self.gripper, self.arm = MotorL298N(47,48,49, self.board), MotorL298N(44,45,46, self.board)
     
     def drivetrain(self):
-        self.drive_left.power(int( (self.gamepad.keys["ABS_Y"] - 128) * 2 ))
-        self.drive_right.power(int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ))
+        equation = int( (self.gamepad.keys["ABS_Y"] - 128) * 2 )
+        self.drive_left.power(equation)
+        print(equation)
+        
+        #self.drive_right.power(int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ))
 
 class MotorL298N:
     def __init__(self,en_pinA, en_pinB,pwm_pin, board):
@@ -25,9 +28,11 @@ class MotorL298N:
     def power(self, motor_power):
         self.board.analog_write(self.pwm_pin, abs(motor_power))
         if motor_power > 0:
+            print("forward")
             self.board.digital_write(self.en_pinA,0)
             self.board.digital_write(self.en_pinB,1)
         else:
+            print("backwards")
             self.board.digital_write(self.en_pinA,1)
             self.board.digital_write(self.en_pinB,0)
 
