@@ -5,9 +5,14 @@ from mygamepad import Gamepad
 
 class ControlSystem:
     def __init__(self):
+        self.gamepad = Gamepad()
         self.board = telemetrix.Telemetrix()
         self.drive_left, self.drive_right = Motor12x5ALite(2,3, self.board), Motor12x5ALite(50,51, self.board)
         self.gripper, self.arm = MotorL298N(47,48,49, self.board), MotorL298N(44,45,46, self.board)
+    
+    def drivetrain(self):
+        self.drive_left.power(int( (self.gamepad.keys["ABS_Y"] - 128) * 2 ))
+        self.drive_right.power(int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ))
 
 class MotorL298N:
     def __init__(self,en_pinA, en_pinB,pwm_pin, board):
@@ -46,7 +51,8 @@ robot = ControlSystem()
 # keep application running
 while True:
     try:
-        time.sleep(1000)
+        robot.drivetrain()
+        time.sleep(100)
     except KeyboardInterrupt:
         robot.board.shutdown()
         sys.exit(0)
