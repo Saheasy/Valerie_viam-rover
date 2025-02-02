@@ -1,8 +1,7 @@
 import sys
 import time
-
-
 from telemetrix import telemetrix
+from mygamepad import Gamepad
 
 class ControlSystem:
     def __init__(self):
@@ -40,6 +39,8 @@ class Motor12x5ALite():
             self.board.digital_write(self.en_pin,0)
         else:
             self.board.digital_write(self.en_pin,1)
+    
+    
 
 robot = ControlSystem()
 # keep application running
