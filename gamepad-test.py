@@ -31,7 +31,7 @@ try:
             keys[event.code] = event.state
         '''
         [ keys.update({event.code: event.state}) for event in get_gamepad() ]
-        print(int( (keys["ABS_RZ"] / 127) * 50 ))
+        print(int( (keys["ABS_RZ"] - 127) * 2 ))
 
         '''
         equation = int( (keys["ABS_RZ"] / 127) * 50 )
