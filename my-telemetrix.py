@@ -13,8 +13,8 @@ class ControlSystem:
     
     def drivetrain(self):
         equation = int( self.gamepad.keys["ABS_Y"] - 256 )
-        self.drive_left.power( int( (self.gamepad.keys["ABS_RZ"] - 128) * 2 ) )
-        self.drive_right.power( int( (self.gamepad.keys["ABS_Y"] - 128) * -2 ) )
+        self.drive_left.power( int( (self.gamepad.keys["ABS_Y"] - 128) * 2 ) )
+        self.drive_right.power( int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ) )
         print(equation)
         
         #self.drive_right.power(int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ))
