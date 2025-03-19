@@ -4,20 +4,21 @@ import os
 from telemetrix import telemetrix
 from mygamepad import Gamepad
 
+#Update Codebase on Raspberry Pi
 os.system("git pull")
 
 class ControlSystem:
     def __init__(self):
         self.gamepad = Gamepad()
         self.board = telemetrix.Telemetrix()
-        self.drive_left, self.drive_right = Motor12x5ALite(2,3, self.board), Motor12x5ALite(4,5, self.board)
-        self.gripper, self.arm = MotorL298N(47,48,49, self.board), MotorL298N(44,45,46, self.board)
-        self.testing_servo = Servo(6)
+        self.drive_left, self.drive_right =  MotorL298N(2,3,4 self.board),  MotorL298N(4,5,6 self.board)
+        #self.gripper, self.arm = MotorL298N(47,48,49, self.board), MotorL298N(44,45,46, self.board)
+        #self.testing_servo = Servo(6)
 
-    def drivetrain(self):
+    def drivetrain_tank(self):
         equation = int( self.gamepad.keys["ABS_Y"] - 256 )
-        self.drive_left.power( int( (self.gamepad.keys["ABS_Y"] - 128) * 2 ) )
-        self.drive_right.power( int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ) )
+        self.drive_left.power( int( (self.gamepad.keys["ABS_Y"] - 128) * -2 ) )
+        self.drive_right.power( int( (self.gamepad.keys["ABS_RZ"] - 128) * 2 ) )
         print(equation)
         
         #self.drive_right.power(int( (self.gamepad.keys["ABS_RZ"] - 128) * -2 ))
@@ -73,10 +74,9 @@ class Servo:
     
 
 robot = ControlSystem()
-# keep application running
 while True:
     try:
-        robot.drivetrain()
+        robot.drivetrain_tank()
         robot.servo_gamepad()
         robot.gamepad.update()
     except KeyboardInterrupt:
