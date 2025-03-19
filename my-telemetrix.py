@@ -11,7 +11,7 @@ class ControlSystem:
     def __init__(self):
         self.gamepad = Gamepad()
         self.board = telemetrix.Telemetrix()
-        self.drive_left, self.drive_right =  MotorL298N(2,3,4 self.board),  MotorL298N(4,5,6 self.board)
+        self.drive_left, self.drive_right =  MotorL298N(2,3,4, self.board),  MotorL298N(4,5,6, self.board)
         #self.gripper, self.arm = MotorL298N(47,48,49, self.board), MotorL298N(44,45,46, self.board)
         #self.testing_servo = Servo(6)
 
